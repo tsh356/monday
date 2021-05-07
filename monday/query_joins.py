@@ -5,7 +5,7 @@ from monday.utils import monday_json_stringify
 # Eventually I will organize this file better but you know what today is not that day.
 
 # ITEM RESOURCE QUERIES
-def mutate_item_query(board_id, group_id, item_name, column_values):
+def mutate_item_query(board_id, group_id, item_name, column_values, create_labels_if_missing):
     # Monday does not allow passing through non-JSON null values here,
     # so if you choose not to specify column values, need to set column_values to empty object.
     column_values = column_values if column_values else {}
@@ -16,11 +16,12 @@ def mutate_item_query(board_id, group_id, item_name, column_values):
             board_id: %s,
             group_id: %s,
             item_name: "%s",
-            column_values: %s
+            column_values: %s,
+            create_labels_if_missing: %s
         ) {
             id
         }
-    }''' % (board_id, group_id, item_name, monday_json_stringify(column_values))
+    }''' % (board_id, group_id, item_name, monday_json_stringify(column_values), create_labels_if_missing)
 
     return query
 

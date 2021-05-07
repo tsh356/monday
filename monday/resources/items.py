@@ -9,8 +9,8 @@ class ItemResource(BaseResource):
     def __init__(self, token):
         super().__init__(token)
 
-    def create_item(self, board_id, group_id, item_name, column_values=None):
-        query = mutate_item_query(board_id, group_id, item_name, column_values)
+    def create_item(self, board_id, group_id, item_name, column_values=None, create_labels_if_missing=False):
+        query = mutate_item_query(board_id, group_id, item_name, column_values, create_labels_if_missing)
         return json.loads(self.client.execute(query))
 
     def create_subitem(self, parent_item_id, subitem_name, column_values=None):
