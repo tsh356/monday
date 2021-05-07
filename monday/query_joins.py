@@ -21,7 +21,7 @@ def mutate_item_query(board_id, group_id, item_name, column_values, create_label
         ) {
             id
         }
-    }''' % (board_id, group_id, item_name, monday_json_stringify(column_values), create_labels_if_missing)
+    }''' % (board_id, group_id, item_name, monday_json_stringify(column_values), 'true' if create_labels_if_missing else 'false')
 
     return query
 
